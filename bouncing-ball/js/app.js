@@ -2,6 +2,11 @@ import {
    Ball
 } from './ball.js';
 
+import {
+   Block
+} from './block.js';
+
+// class App
 class App {
    constructor() {
       this.canvas = document.createElement('canvas');
@@ -13,7 +18,9 @@ class App {
       window.addEventListener('resize', this.resize.bind(this), false);
       this.resize();
 
-      this.ball = new Ball(this.stageWidth, this.stageHeight, 60, 15);
+      // ball, block
+      this.ball = new Ball(this.stageWidth, this.stageHeight, 30, 15);
+      this.block = new Block(500, 30, 300, 300);
 
       window.requestAnimationFrame(this.animate.bind(this));
    }  
@@ -34,7 +41,9 @@ class App {
 
       this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
-      this.ball.draw(this.ctx, this.stageWidth, this.stageHeight);
+      // block, ball 그리기
+      this.block.draw(this.ctx);
+      this.ball.draw(this.ctx, this.stageWidth, this.stageHeight, this.block);
    }
 }
 
