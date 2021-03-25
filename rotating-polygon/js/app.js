@@ -11,6 +11,14 @@ class App {
       window.addEventListener('resize', this.resize.bind(this), false);
       this.resize();
 
+      this.isDown = false;
+      this.moveX = 0;
+      this.offsetX = 0;
+      document.addEventListener('pointerdown', this.onDown.bind(this), false);
+      document.addEventListener('pointermove', this.onMove.bind(this), false);
+      document.addEventListener('pointerup', this.onUp.bind(this), false);
+
+
       window.requestAnimationFrame(this.animate.bind(this));
    }
 
@@ -26,7 +34,8 @@ class App {
          this.stageWidth / 2,
          this.stageHeight / 2,
          this.stageHeight / 3,
-         3
+         // 다각형 꼭짓점 수
+         5
       )
    }
 
@@ -35,7 +44,26 @@ class App {
 
       this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
-      this.polygon.animate(this.ctx);      
+      this.moveX *= 0.92;
+
+      this.polygon.animate(this.ctx, this.moveX);
+   }
+
+   onDown(e){
+      this.isDown = true;
+      this.moveX = 0;
+      this.offsetX = e.clientX;
+   }
+
+   onMove(e){
+      if(this.isDown) {
+         this.moveX = e.clientX - this.offsetX;
+         this.offsetX = e.clientX;
+      }
+   }
+
+   onUp(e){
+      this.isDown = false;
    }
 }
 
