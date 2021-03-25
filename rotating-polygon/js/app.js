@@ -1,3 +1,5 @@
+import {Polygon} from './polygon.js';
+
 class App {
    constructor() {
       this.canvas = document.createElement('canvas');
@@ -19,6 +21,13 @@ class App {
       this.canvas.width = this.stageWidth * this.pixelRatio;
       this.canvas.height = this.stageHeight * this.pixelRatio;
       this.ctx.scale(this.pixelRatio, this.pixelRatio);
+
+      this.polygon = new Polygon(
+         this.stageWidth / 2,
+         this.stageHeight / 2,
+         this.stageHeight / 3,
+         3
+      )
    }
 
    animate() {
