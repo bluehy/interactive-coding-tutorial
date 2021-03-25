@@ -31,11 +31,20 @@ class App {
       this.ctx.scale(this.pixelRatio, this.pixelRatio);
 
       this.polygon = new Polygon(
+         // 01, 02
+         // this.stageWidth / 2,
+         // this.stageHeight / 2,
+         // this.stageHeight / 3,
+         // 
+         
+         // 03 위치이동, 사이즈변경
          this.stageWidth / 2,
-         this.stageHeight / 2,
-         this.stageHeight / 3,
+         this.stageHeight + (this.stageHeight / 4),
+         this.stageHeight / 1.5,
+         // 
+
          // 다각형 꼭짓점 수
-         5
+         15
       )
    }
 
@@ -44,7 +53,7 @@ class App {
 
       this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
-      this.moveX *= 0.92;
+      this.moveX *= -0.92;
 
       this.polygon.animate(this.ctx, this.moveX);
    }
