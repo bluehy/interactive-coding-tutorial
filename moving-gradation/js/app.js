@@ -1,5 +1,7 @@
 // app.js
 
+import { GlowParticle } from "./glowparticle.js";
+
 const COLORS = [
    {r : 45, g : 74, b : 227}, //blue
    {r : 250, g : 255, b : 89}, //yellow
@@ -43,7 +45,19 @@ class App {
       this.particles = [];
 
       for(let i = 0; i < this.totalParticles; i++) {
-         
+         const item = new GlowParticle(
+            Math.random() * this.stageWidth,
+            Math.random() * this.stageHeight,
+            Math.random() * 
+            (this.maxRadius - this.minRadius) + this.minRadius,
+            COLORS[curColor]
+         );
+
+         if (++curColor >= COLORS.length) {
+            curColor = 0;
+         }
+
+         this.particles[i] = item;
       }
    }
 
